@@ -1,5 +1,5 @@
 package com.example.shop.constant;
 
-public enum itemSellStatus {
+public enum ItemSellStatus {
     SELL, SOLD_OUT
 }

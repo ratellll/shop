@@ -1,12 +1,11 @@
 package com.example.shop.Entity;
 
 
-import com.example.shop.constant.itemSellStatus;
+import com.example.shop.constant.ItemSellStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.awt.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -26,7 +25,7 @@ public class Item {
     private String itemNm;//상품이름
 
     @Column(nullable = false, length = 50)
-    private Long itemSize;//상품사이즈
+    private int itemSize;//상품사이즈
 
     @Column(name = "price", nullable = false)
     private int price;//가격
@@ -39,7 +38,7 @@ public class Item {
     private String itemDetail;//상품 상세 설명
 
     @Enumerated(EnumType.STRING)
-    private itemSellStatus itemSellStatus;// 상품판매상
+    private ItemSellStatus itemSellStatus;// 상품판매상
 
 
     private LocalDateTime regTime;// 등록시간
