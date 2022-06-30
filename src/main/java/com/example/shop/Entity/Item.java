@@ -24,7 +24,7 @@ public class Item {
     @Column(nullable = false, length = 50)
     private String itemNm;//상품이름
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "itemSize", nullable = false)
     private int itemSize;//상품사이즈
 
     @Column(name = "price", nullable = false)

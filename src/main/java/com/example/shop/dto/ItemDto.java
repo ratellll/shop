@@ -15,7 +15,7 @@ public class ItemDto {
 
     private Integer price;
 
-    private int itemSize;
+    private Integer itemSize;
 
     private String itemDetail;
 
