@@ -40,18 +40,20 @@ public class MemberController {
     }
 
     @PostMapping(value = "/new")
-    public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "member/memberForm"
+    public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            return "member/memberForm";
         }
 
         try {
             Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
-        } catch (IllegalStateException e) {
+        } catch (IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
             return "member/memberForm";
         }
+
         return "redirect:/";
     }
 }
