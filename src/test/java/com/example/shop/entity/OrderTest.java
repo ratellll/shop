@@ -6,8 +6,7 @@ import com.example.shop.Entity.Member;
 import com.example.shop.Entity.Order;
 import com.example.shop.Entity.OrderItem;
 import com.example.shop.constant.ItemSellStatus;
-import com.example.shop.repository.ItemRepository;
-import com.example.shop.repository.OrderRepository;
+import com.example.shop.repository.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import com.example.shop.repository.MemberRepository;
+
 import com.example.shop.repository.OrderRepository;
 
 @SpringBootTest
@@ -41,6 +40,8 @@ class OrderTest {
     @Autowired
     MemberRepository memberRepository;
 
+    @Autowired
+    OrderItemRepository orderItemRepository;
 
 
     public Item createItem(){
@@ -106,6 +107,19 @@ class OrderTest {
         order.getOrderItems().remove(0);
         em.flush();
     }
-
+    @Test
+    @DisplayName("지연 로딩 테스트")
+    public void lazyLoadingTest(){
+        Order order = this.createOrder();
+        Long orderItemId = order.getOrderItems().get(0).getId();
+        em.flush();
+        em.clear();
+        OrderItem orderItem = orderItemRepository.findById(orderItemId)
+                .orElseThrow(EntityNotFoundException::new);
+        System.out.println("Order class : " + orderItem.getOrder().getClass());
+        System.out.println("===========================");
+        orderItem.getOrder().getOrderDate();
+        System.out.println("===========================");
+    }
 
 }
