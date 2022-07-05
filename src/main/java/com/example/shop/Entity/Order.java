@@ -23,7 +23,7 @@ public class Order {
     private Long id;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -32,7 +32,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus; // 주문상태
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     private List<OrderItem> orderItems = new ArrayList<>();
 
 
