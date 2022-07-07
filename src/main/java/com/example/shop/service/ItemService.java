@@ -23,7 +23,7 @@ public class ItemService {
     private final ItemImgRepository itemImgRepository;
 
 
-    private Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception {
+   public Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception {
 
 
         //상품등록
